@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Jan 2024 pada 09.29
+-- Waktu pembuatan: 18 Jun 2024 pada 09.06
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.1.25
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_satpam`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `area`
+--
+
+CREATE TABLE `area` (
+  `id_area` int(10) NOT NULL,
+  `nama_area` varchar(250) NOT NULL,
+  `alamat` varchar(250) NOT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `tgl_mulai_kontrak` date NOT NULL,
+  `tgl_akhir_kontrak` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `area`
+--
+
+INSERT INTO `area` (`id_area`, `nama_area`, `alamat`, `no_telp`, `tgl_mulai_kontrak`, `tgl_akhir_kontrak`) VALUES
+(2, 'RS Pamanukan Medical Center', 'Pamanukan Subang', '087771231111', '2023-09-01', '2024-10-01'),
+(3, 'RSU AMIRA ', 'Munjul Purwakarta', '089558099089', '2024-01-05', '2025-02-05'),
+(4, 'RS Siloam', 'Campaka Purwakarta', '0838080978010', '2024-02-02', '2025-01-02');
 
 -- --------------------------------------------------------
 
@@ -79,18 +103,22 @@ CREATE TABLE `satpam` (
   `alamat` text NOT NULL,
   `no_telp` varchar(13) NOT NULL,
   `tgl_perekrutan` date NOT NULL,
-  `nik` varchar(20) NOT NULL
+  `nik` varchar(20) NOT NULL,
+  `pendidikan_terakhir` varchar(100) NOT NULL,
+  `jabatan` varchar(50) NOT NULL,
+  `area` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `satpam`
 --
 
-INSERT INTO `satpam` (`id_satpam`, `nama`, `tgl_lahir`, `alamat`, `no_telp`, `tgl_perekrutan`, `nik`) VALUES
-(1, 'Algivari', '1998-01-12', 'Jl. Anggrek 2 Purwakarta', '087735487888', '2023-02-02', 'Algivari'),
-(3, 'Faiz Aldian', '1999-01-18', 'Jl. Mawar 2 Purwakarta', '089558099089', '2023-02-02', '3214124406100002'),
-(4, 'Faiz Aldiansyah', '1998-05-04', 'Jl. Industri No 5', '087771231111', '2023-02-02', '3214124406100003'),
-(5, 'Muhammad Bima', '1998-09-09', 'Jl. Industri No 5', '089558099990', '2023-02-02', 'Muhammad Bima');
+INSERT INTO `satpam` (`id_satpam`, `nama`, `tgl_lahir`, `alamat`, `no_telp`, `tgl_perekrutan`, `nik`, `pendidikan_terakhir`, `jabatan`, `area`) VALUES
+(4, 'Faiz Aldiansyah', '1998-05-04', 'Jl. Industri No 5', '087771231111', '2023-02-02', '3214124406100003', 'SMA', 'Anggota', 'RS Siloam'),
+(9, 'Jefry Nichol', '2000-01-01', 'Jl. Anggrek 3 Purwakarta', '087775776778', '2024-02-01', '3214124406100003', 'SMA', 'Anggota', 'RS Pamanukan Medical Center'),
+(10, 'Algivariiii', '2000-01-01', 'Jl. Anggrek 2 Purwakarta', '0838080978010', '2024-01-01', '3214124406100006', 'D3 Manajemen Informatika', 'Danru', 'RS Pamanukan Medical Center'),
+(11, 'Ali Akbar', '1999-03-01', 'Jl. Anggrek 3 Purwakarta', '087735487888', '2024-03-01', '3214124406100006', 'D3 Manajemen Informatika', 'Danru', 'RS Siloam'),
+(12, 'M. Rizky', '1999-05-04', 'Jl. Anggrek 2 Purwakarta', '089558099990', '2024-05-01', '3214124406100006', 'SMA', 'Anggota', 'RS Pamanukan Medical Center');
 
 -- --------------------------------------------------------
 
@@ -115,6 +143,12 @@ INSERT INTO `user` (`id_user`, `username`, `password`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `area`
+--
+ALTER TABLE `area`
+  ADD PRIMARY KEY (`id_area`);
 
 --
 -- Indeks untuk tabel `jadwal_penugasan`
@@ -155,10 +189,16 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `area`
+--
+ALTER TABLE `area`
+  MODIFY `id_area` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT untuk tabel `satpam`
 --
 ALTER TABLE `satpam`
-  MODIFY `id_satpam` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_satpam` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
